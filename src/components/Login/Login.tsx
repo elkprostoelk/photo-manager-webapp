@@ -27,7 +27,7 @@ const Login = () => {
         formData.forEach((value, key) => loginDto[key] = value.toString());
         try {
             const responseData = await httpClient.post(
-                import.meta.env.VITE_API_URL + 'auth/login',
+                'auth/login',
                 loginDto,
                 {headers: {'Content-Type': 'application/json'}}
             );

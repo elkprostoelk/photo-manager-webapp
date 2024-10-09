@@ -3,6 +3,8 @@ html, body {
 }
 
 main {
+    flex: 1;
+    overflow: auto;
     width: 100%;
     top: 5rem;
     position: fixed;
