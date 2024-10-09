@@ -5,7 +5,7 @@ import {Button} from "primereact/button";
 import axios, {AxiosError} from "axios";
 import {isUserLoggedIn} from "../../utils/user.ts";
 import {Toast} from "primereact/toast";
-import {useRef} from "react";
+import {FormEventHandler, useRef} from "react";
 
 const Login = () => {
     if (isUserLoggedIn()) {
@@ -14,15 +14,15 @@ const Login = () => {
 
     const loginToast = useRef<Toast>(null);
     const showError = (message: string | null | undefined) =>
-        loginToast.current.show({
+        loginToast.current?.show({
             severity: 'error',
             summary: 'Login failed',
             detail: message ?? 'Failed to sign in!'
         });
-    const loginUser = async (event) => {
+    const loginUser: FormEventHandler<HTMLFormElement> = async (event) => {
         event.preventDefault();
-        const formData = new FormData(event.target);
-        const loginDto = {userNameOrEmail: '', password: ''};
+        const formData = new FormData(event.target as HTMLFormElement);
+        const loginDto: {[key: string]: string} = {userNameOrEmail: '', password: ''};
         formData.forEach((value, key) => loginDto[key] = value.toString());
         try {
             const responseData = await axios.post(

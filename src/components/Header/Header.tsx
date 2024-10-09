@@ -1,6 +1,6 @@
 import './Header.css';
 import {Avatar} from "primereact/avatar";
-import {useRef, useState} from "react";
+import {MouseEventHandler, useRef, useState} from "react";
 import {NavLink} from "react-router-dom";
 import {getLoggedInUser, isUserLoggedIn, logoutUser} from "../../utils/user.ts";
 import {Button} from "primereact/button";
@@ -21,7 +21,7 @@ const Header = () => {
             }
         }
     ];
-    const toggleMenuClick = (e) => userMenu.current.toggle(e);
+    const toggleMenuClick: MouseEventHandler = (e) => userMenu.current?.toggle(e);
     const unauthorizedActionLinkClass = 'p-button p-button-text p-button-contrast unauthorized-action-link';
     const [authState,] = useState({
        isLoggedIn: isUserLoggedIn(),
