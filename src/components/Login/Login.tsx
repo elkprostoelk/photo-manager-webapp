@@ -2,10 +2,11 @@ import './Login.css';
 import {InputText} from "primereact/inputtext";
 import {Password} from "primereact/password";
 import {Button} from "primereact/button";
-import axios, {AxiosError} from "axios";
+import {AxiosError} from "axios";
 import {isUserLoggedIn} from "../../utils/user.ts";
 import {Toast} from "primereact/toast";
 import {FormEventHandler, useRef} from "react";
+import httpClient from "../../utils/httpClient.ts";
 
 const Login = () => {
     if (isUserLoggedIn()) {
@@ -25,7 +26,7 @@ const Login = () => {
         const loginDto: {[key: string]: string} = {userNameOrEmail: '', password: ''};
         formData.forEach((value, key) => loginDto[key] = value.toString());
         try {
-            const responseData = await axios.post(
+            const responseData = await httpClient.post(
                 import.meta.env.VITE_API_URL + 'auth/login',
                 loginDto,
                 {headers: {'Content-Type': 'application/json'}}
