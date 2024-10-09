@@ -3,6 +3,8 @@ html, body {
 }
 
 main {
+    width: 100%;
     top: 5rem;
-    position: relative;
+    position: fixed;
+    bottom: 5rem;
 }

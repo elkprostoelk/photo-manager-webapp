@@ -11,10 +11,17 @@ header {
     align-items: center;
     justify-content: space-between;
 
+    .unauthorized-actions {
+        .unauthorized-action-link {
+            text-decoration: none;
+            font-weight: 700;
+        }
+    }
+
     .user-panel {
         background-color: azure;
         border-radius: 30px;
-        padding-right: .5rem;
+
 
         .user-name {
             padding: 0 .5rem 0 .75rem;
