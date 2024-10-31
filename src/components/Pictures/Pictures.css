@@ -6,16 +6,28 @@
     justify-content: center;
 }
 
-.picture-card {
-    width: 30%;
-    margin: .5rem 0;
-    background-color: #dffdff;
+.progress-spinner-block {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-    img {
-        max-width: 80%;
-    }
+.no-pictures-container {
+    display: flex;
+    justify-content: center;
 
-    .picture-parameters {
-        margin: .5rem;
+    .no-pictures {
+        color: cadetblue;
+        display: flex;
+        flex-direction: column;
+        margin: 15rem;
+        align-items: center;
+
+        span {
+            margin: 1rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
     }
 }

@@ -5,8 +5,9 @@ import {PagedResultDto} from "../../utils/dto/pagedResultDto.ts";
 import {AxiosError} from "axios";
 import {Toast} from "primereact/toast";
 import {ProgressSpinner} from "primereact/progressspinner";
-import {Card} from "primereact/card";
 import './Pictures.css';
+import {Paginator} from "primereact/paginator";
+import PictureCard from "./PictureCard/PictureCard.tsx";
 
 const Pictures = () => {
     const picturesToast = useRef<Toast>(null);
@@ -37,33 +38,29 @@ const Pictures = () => {
 
     return (
         <>
-            {isLoading
-            ? <ProgressSpinner />
-            : <div className={'pictures-cards'}>
-                    {
-                        pictures.pageItems.map((picture, index) => {
-                            return (
-                                <Card
-                                    key={index}
-                                    className={'picture-card'}
-                                    title={picture.title}>
-                                    <img
-                                        src={import.meta.env.VITE_API_SHORT_URL + picture.physicalPath}
-                                        alt={picture.title}/>
-                                    <div className={'picture-parameters'}>
-                                        <strong>Width:</strong> {picture.width}
+            {
+                isLoading
+                    ? <div className={'progress-spinner-block'}><ProgressSpinner/></div>
+                    : (
+                        pictures.totalItems > 0
+                            ? (
+                                <div className={'pictures-cards'}>
+                                    {
+                                        pictures.pageItems.map((picture, index) =>
+                                            <PictureCard key={index} picture={picture}/>)
+                                    }
+                                    {pictures.totalItems > pictures.itemsPerPage && <Paginator/>}
+                                </div>
+                            )
+                            : (
+                                <div className={'no-pictures-container'}>
+                                    <div className={'no-pictures'}>
+                                        <i className={'pi pi-image'} style={{fontSize: '5rem'}} />
+                                        <span>No Pictures Found</span>
                                     </div>
-                                    <div className={'picture-parameters'}>
-                                        <strong>Height:</strong> {picture.height}
-                                    </div>
-                                    <div className={'picture-parameters'}>
-                                        <strong>Owner:</strong> {picture.owner.name}
-                                    </div>
-                                </Card>
-                            );
-                        })
-                    }
-                </div>
+                                </div>
+                            )
+                    )
             }
         </>
     );

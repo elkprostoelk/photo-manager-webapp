@@ -1,0 +1,13 @@
+.picture-card {
+    width: 30%;
+    margin: .5rem 0;
+    background-color: #dffdff;
+
+    img {
+        max-width: 80%;
+    }
+
+    .picture-parameters {
+        margin: .5rem;
+    }
+}
