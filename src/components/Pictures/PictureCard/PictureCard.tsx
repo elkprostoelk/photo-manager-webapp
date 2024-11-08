@@ -7,12 +7,14 @@ interface Props {
 }
 
 const PictureCard = ({picture}: Props) => {
+    const apiPath: string = import.meta.env.VITE_API_SHORT_URL;
+
     return (
         <Card
             className={'picture-card'}
             title={picture.title}>
             <img
-                src={import.meta.env.VITE_API_SHORT_URL + picture.physicalPath}
+                src={`${apiPath}${picture.physicalPath}`}
                 alt={picture.title}/>
             <div className={'picture-parameters'}>
                 <strong>Width:</strong> {picture.width}

@@ -1,22 +1,16 @@
 import httpClient from "../../utils/httpClient.ts";
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useState} from "react";
 import {ShortPictureDto} from "../../utils/dto/shortPictureDto.ts";
 import {PagedResultDto} from "../../utils/dto/pagedResultDto.ts";
 import {AxiosError} from "axios";
-import {Toast} from "primereact/toast";
 import {ProgressSpinner} from "primereact/progressspinner";
 import './Pictures.css';
 import {Paginator} from "primereact/paginator";
 import PictureCard from "./PictureCard/PictureCard.tsx";
+import {useToast} from "../../utils/contexts/UseToast.tsx";
 
 const Pictures = () => {
-    const picturesToast = useRef<Toast>(null);
-    const showError = (message: string | null | undefined) =>
-        picturesToast.current?.show({
-            severity: 'error',
-            summary: 'Login failed',
-            detail: message ?? 'Failed to sign in!'
-        });
+    const [,showError,] = useToast();
     const [pictures, setPictures] = useState<PagedResultDto<ShortPictureDto>>({
         totalItems: 0,
         page: 1,
@@ -32,7 +26,7 @@ const Pictures = () => {
             .then(picturesPage => setPictures(picturesPage.data))
             .catch(error => {
                 const axiosErr = error as AxiosError;
-                showError(axiosErr?.message ?? null);
+                showError(null, axiosErr?.message ?? null);
             }).finally(() => setIsLoading(false));
     }, [])
 
