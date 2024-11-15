@@ -4,6 +4,7 @@ import Footer from "./components/Footer/Footer.tsx";
 import {Route, Routes} from "react-router-dom";
 import Pictures from "./components/Pictures/Pictures.tsx";
 import Login from "./components/Login/Login.tsx";
+import Register from "./components/Register/Register.tsx";
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
             <Routes>
                 <Route path={'/'} element={<Pictures />} />
                 <Route path={'login'} element={<Login />} />
+                <Route path={'register'} element={<Register />} />
             </Routes>
         </main>
         <Footer />

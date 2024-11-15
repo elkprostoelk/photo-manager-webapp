@@ -1,7 +1,7 @@
 import './Header.css';
 import {Avatar} from "primereact/avatar";
 import {MouseEventHandler, useRef} from "react";
-import {NavLink} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import {getLoggedInUser, isUserLoggedIn, logoutUser} from "../../utils/user.ts";
 import {Button} from "primereact/button";
 import {Menu} from "primereact/menu";
@@ -24,7 +24,7 @@ const Header = () => {
 
     return (
         <header>
-            <div><h1>Photo Manager App</h1></div>
+            <div><h1><Link to="/" style={{textDecoration: 'none', color: 'black'}}>Photo Manager App</Link></h1></div>
             {isUserLoggedIn()
                 ? (<div className={'user-panel'}>
                     <Avatar label={getLoggedInUser()?.name.charAt(0).toUpperCase()} size={'large'} shape={'circle'} />

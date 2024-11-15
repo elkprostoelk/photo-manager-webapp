@@ -1,6 +1,7 @@
 .search-filters-panel {
     border-right: 1px solid cadetblue;
-    width: 30%;
+    width: 20%;
+    min-width: 17rem;
     padding: 0 1rem;
     overflow-y: auto;
 
