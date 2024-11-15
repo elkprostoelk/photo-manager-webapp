@@ -1,0 +1,14 @@
+.search-filters-panel {
+    border-right: 1px solid cadetblue;
+    width: 30%;
+    padding: 0 1rem;
+    overflow-y: auto;
+
+    .search-filter-group {
+        margin: 1rem 0;
+
+        button:not(:last-child) {
+            margin-right: 1rem;
+        }
+    }
+}

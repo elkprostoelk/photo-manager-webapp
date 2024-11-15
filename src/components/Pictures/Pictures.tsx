@@ -8,6 +8,8 @@ import './Pictures.css';
 import {Paginator} from "primereact/paginator";
 import PictureCard from "./PictureCard/PictureCard.tsx";
 import {useToast} from "../../utils/contexts/UseToast.tsx";
+import {SearchPicturesDto} from "../../utils/dto/searchPicturesDto.ts";
+import SearchFilters from "./SearchFilters/SearchFilters.tsx";
 
 const Pictures = () => {
     const [,showError,] = useToast();
@@ -19,19 +21,26 @@ const Pictures = () => {
         pageItems: []
     })
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [searchParams, setSearchParams] = useState<SearchPicturesDto>();
+
+    const onSearchFiltersChange = (params: SearchPicturesDto) => {
+        setSearchParams(params);
+    }
 
     useEffect(() => {
         setIsLoading(true);
-        httpClient.get<PagedResultDto<ShortPictureDto>>('pictures')
-            .then(picturesPage => setPictures(picturesPage.data))
-            .catch(error => {
-                const axiosErr = error as AxiosError;
-                showError(null, axiosErr?.message ?? null);
-            }).finally(() => setIsLoading(false));
-    }, [])
+        httpClient.get<PagedResultDto<ShortPictureDto>>('pictures', {
+                params: searchParams
+            }).then(picturesPage => setPictures(picturesPage.data))
+                .catch(error => {
+                    const axiosErr = error as AxiosError;
+                    showError(null, axiosErr?.message ?? null);
+                }).finally(() => setIsLoading(false));
+    }, [searchParams, showError])
 
     return (
         <>
+            <SearchFilters onFiltersChanged={onSearchFiltersChange} />
             {
                 isLoading
                     ? <div className={'progress-spinner-block'}><ProgressSpinner/></div>
