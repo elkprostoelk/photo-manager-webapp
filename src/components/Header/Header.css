@@ -9,6 +9,19 @@ header {
     align-items: center;
     justify-content: space-between;
 
+    .authorized-actions {
+        display: inline-flex;
+
+        .p-button:not(:last-child) {
+            margin-right: 1rem;
+        }
+
+        .authorized-action-item {
+            text-decoration: none;
+            font-weight: 600;
+        }
+    }
+
     .unauthorized-actions {
         .unauthorized-action-link {
             text-decoration: none;
@@ -19,7 +32,6 @@ header {
     .user-panel {
         background-color: azure;
         border-radius: 30px;
-
 
         .user-name {
             padding: 0 .5rem 0 .75rem;

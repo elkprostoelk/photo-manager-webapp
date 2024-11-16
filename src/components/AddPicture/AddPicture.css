@@ -1,0 +1,30 @@
+.add-picture-form-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    .add-picture-form {
+        border: 2px solid cadetblue;
+        border-radius: 5px;
+        padding: 1.5rem;
+        width: 50%;
+
+        button:not(:last-child) {
+            margin-right: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin: 1rem;
+
+            label {
+                margin: .5rem 0;
+            }
+        }
+    }
+}
